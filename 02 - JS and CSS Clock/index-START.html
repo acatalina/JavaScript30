@@ -59,11 +59,8 @@
         position: absolute;
         left: 50%;
         transform-origin: bottom;
-        transition: all 0.1s cubic-bezier(0, 2.79, 0.58, 1);
-      }
-
-      .second-hand {
-        width: 2px;
+        transition: all 0.05s cubic-bezier(0, 2.79, 0.58, 1);
+        border-radius: 50%;
       }
 
     </style>
@@ -80,18 +77,26 @@
         const now = new Date();
         const seconds = now.getSeconds();
         const secondsDegrees = getDegrees(seconds);
-        
-        secondsHand.style.transform = `rotate(${secondsDegrees}deg)`;
-
         const minutes = now.getMinutes();
         const minutesDegrees = getDegrees(minutes);
-        
-        minutesHand.style.transform = `rotate(${minutesDegrees}deg) scale(.8)`;
-
         const hours = now.getHours();
         const hoursDegrees = (hours / 12) * 360;
+        
+        if (secondsDegrees === 0) {
+          secondsHand.style.transition = 'none';
+        }
+        
+        if (minutesDegrees === 0) {
+          minutesHand.style.transition = 'none';
+        }
 
-        hoursHand.style.transform = `rotate(${hoursDegrees}deg) scale(.6)`;
+        if (hoursDegrees === 0) {
+          hoursHand.style.transition = 'none';
+        }
+        
+        secondsHand.style.transform = `rotate(${secondsDegrees}deg) scaleX(.2)`;
+        minutesHand.style.transform = `rotate(${minutesDegrees}deg) scaleY(.9)`;
+        hoursHand.style.transform = `rotate(${hoursDegrees}deg) scaleY(.5)`;
       }
 
       setInterval(setDate, 1000);

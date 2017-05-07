@@ -61,6 +61,11 @@
         transform-origin: bottom;
         transition: all 0.1s cubic-bezier(0, 2.79, 0.58, 1);
       }
+
+      .second-hand {
+        width: 2px;
+      }
+
     </style>
     <script>
       const secondsHand = document.querySelector('.second-hand');
@@ -81,12 +86,12 @@
         const minutes = now.getMinutes();
         const minutesDegrees = getDegrees(minutes);
         
-        minutesHand.style.transform = `rotate(${minutesDegrees}deg)`;
+        minutesHand.style.transform = `rotate(${minutesDegrees}deg) scale(.8)`;
 
         const hours = now.getHours();
-        const hoursDegrees = getDegrees(hours);
-        
-        hoursHand.style.transform = `rotate(${hoursDegrees}deg)`;
+        const hoursDegrees = (hours / 12) * 360;
+
+        hoursHand.style.transform = `rotate(${hoursDegrees}deg) scale(.6)`;
       }
 
       setInterval(setDate, 1000);

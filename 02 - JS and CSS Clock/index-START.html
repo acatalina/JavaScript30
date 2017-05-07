@@ -59,8 +59,11 @@
         position: absolute;
         left: 50%;
         transform-origin: bottom;
-        transition: all 0.05s cubic-bezier(0, 2.79, 0.58, 1);
         border-radius: 50%;
+      }
+
+      .stopTransition {
+        transition: none;
       }
 
     </style>
@@ -81,17 +84,24 @@
         const minutesDegrees = getDegrees(minutes);
         const hours = now.getHours();
         const hoursDegrees = (hours / 12) * 360;
+        const transition = 'all 0.1s cubic-bezier(0, 2.79, 0.58, 1)';
         
         if (secondsDegrees === 0) {
           secondsHand.style.transition = 'none';
+        } else {
+          secondsHand.style.transition = transition;
         }
         
         if (minutesDegrees === 0) {
           minutesHand.style.transition = 'none';
+        } else {
+          minutesHand.style.transition = transition;
         }
 
         if (hoursDegrees === 0) {
           hoursHand.style.transition = 'none';
+        } else {
+          hoursHand.style.transition = transition;
         }
         
         secondsHand.style.transform = `rotate(${secondsDegrees}deg) scaleX(.2)`;

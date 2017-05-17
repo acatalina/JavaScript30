@@ -6,7 +6,7 @@
 </head>
 <body>
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+  <p onclick="makeGreen()">×BREAK×DOWN×</p>
 
   <script>
     const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
@@ -18,28 +18,62 @@
     }
 
     // Regular
+    console.log('Hello');
 
     // Interpolated
+    console.log('Hello, I am %s', 'a cool stuff');
 
     // Styled
+    console.log('%c I am stilyed text', 'font-size: 20px');
 
     // warning!
+    console.warn('WARNING!!');
 
     // Error :|
+    console.error('ERROR!');
 
     // Info
+    console.info('SOME INFO');
 
     // Testing
+    console.assert(false === true, 'False is not true!');
 
     // clearing
+    console.clear();
 
     // Viewing DOM Elements
+    const p = document.querySelector('p');
+    
+    console.log(p);
+    console.dir(p);
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(dog.name);
+      console.log(dog.name);
+      console.log(dog.age);
+      console.groupEnd(dog.name);
+    });
 
     // counting
-
+    console.count('test');
+    console.count('test');
+    console.count('test2');
+    console.count('test');
+    console.count('test2');
+    console.count('test2');
+    
     // timing
+    console.time('fetching data');
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
+
+    // table
+    console.table(dogs);
 
   </script>
 </body>

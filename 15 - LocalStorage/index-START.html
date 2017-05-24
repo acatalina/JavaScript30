@@ -22,6 +22,7 @@
     <form class="add-items">
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
+      <input class="button-uncheck" type="button" value="Uncheck All" />
     </form>
   </div>
 
@@ -29,6 +30,7 @@
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
   const items = JSON.parse(localStorage.getItem('items')) || [];
+  const uncheckAll = addItems.querySelector('.button-uncheck');
 
   function addItem(e) {
     e.preventDefault();
@@ -72,8 +74,19 @@
     populateList(items, itemsList);
   }
 
+  function uncheckAllHandler(e) {
+    items.forEach(item => {
+      item.done = false;
+    });
+
+    localStorage.setItem('items', JSON.stringify(items));
+    populateList(items, itemsList);
+  }
+
   addItems.addEventListener('submit', addItem);
   itemsList.addEventListener('click', toggleDone);
+  uncheckAll.addEventListener('click', uncheckAllHandler);
+
   populateList(items, itemsList);
 </script>
 

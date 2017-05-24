@@ -33,13 +33,20 @@
     // or use the new ES6 Spread
 
     // now when we update it, the original one isn't changed
+    const team = players.slice();
+    const team2 = [].concat(players);
+    const team3 = [...players];
+    const team4 = Array.from(players);
 
     // The same thing goes for objects, let's say we have a person object
 
     // with Objects
-
+    const person = {
+      name: 'Wes Bos',
+      age: 80
+    };
     // and think we make a copy:
-
+    const captain = Object.assign({}, person, {age: 99});
     // how do we take a copy instead?
 
     // We will hopefully soon see the object ...spread

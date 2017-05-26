@@ -44,8 +44,26 @@
   <ul id="bands"></ul>
 
 <script>
-const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+  const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+  function getName(band) {
+    return band.replace(/(a\s|the\s|an\s)/i, '');
+  }
+
+  function generateList(array) {
+    return array
+      .map(elem => `<li>${elem}</li>`)
+      .join('');
+  }
+
+  function sortBands(bands) {
+    return bands
+      .sort((a, b) => getName(a) > getName(b) ? 1 : -1);
+  }
+
+  const sortedBands = sortBands(bands);
+
+  document.querySelector('#bands').innerHTML = generateList(sortedBands);
 
 </script>
 
